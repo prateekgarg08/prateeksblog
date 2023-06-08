@@ -12,11 +12,14 @@ passport.use(new LocalStrategy({
   async function (email, password, done) {
     try {
       const user = await User.findOne({ email: email });
-
+      console.log(email, password)
       if (!user) {
         return done(null, false, { message: "Incorrect email" });
       };
-      if (!user.verifyPassword(password)) {
+
+      const match = await user.verifyPassword(password)
+      console.log(match)
+      if (!match) {
         return done(null, false, { message: "Incorrect password" });
       };
       return done(null, user);
