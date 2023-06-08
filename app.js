@@ -1,4 +1,5 @@
 require('dotenv').config()
+var cors = require('cors')
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -16,6 +17,8 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(cors())
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -25,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/v1/', indexRouter);
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/admin', passport.authenticate('jwt', { session: false }), adminRouter);
-app.use(passport.initialize())  
+app.use(passport.initialize())
 
 
 
