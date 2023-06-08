@@ -28,13 +28,14 @@ const getPost = async function (req, res) {
 
 const pushComment = async function (req, res) {
   const postId = req.params.postid
+  console.log(req.body)
   const comment = {
     msg: req.body.msg,
     addedBy: {
-      usesrname: req.body.username,
+      username: req.body.username,
       email: req.body.email
     },
-    addedOn: postId
+    addedOn: postId,
   }
   const post = await Post.findOneAndUpdate({ _id: postId }, {
     "$push": { "comments": comment, }, "$inc": { "commentCount": 1 }
