@@ -9,6 +9,10 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: [true, "proivde description"]
   },
+  image_public_id: {
+    type: String,
+    required: [true, "proivde image public id"]
+  },
   comments: {
     type: [CommentSchema],
     default: []

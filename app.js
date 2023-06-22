@@ -11,7 +11,13 @@ const User = require('./models/User')
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
 const authRouter = require('./routes/auth')
+
+
 var app = express();
+
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
