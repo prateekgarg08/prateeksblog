@@ -4,7 +4,7 @@ const getPublishedPosts = async function (req, res) {
   const limit = 10
   const skip = (page - 1) * limit
   const posts = await Post.find({ isPublished: true }).select("title description commentCount addedAt").skip(skip).limit(limit)
-  const totalPages = Math.ceil(await Post.countDocuments() / limit)
+  const totalPages = Math.ceil(await Post.countDocuments({ isPublished: true }) / limit)
 
   res.status(200).json({
     posts,
