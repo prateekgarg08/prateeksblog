@@ -5,5 +5,5 @@ const { getAllPosts, postPost, getPost, deletePost, updatePost } = require('../c
 
 router.route('/').get(getAllPosts)
 router.post('/', upload.single('file'), postPost);
-router.route('/:postid').get(getPost).delete(deletePost).put(updatePost)
+router.route('/post/:postid').get(getPost).delete(deletePost).put(updatePost)
 module.exports = router;

@@ -4,6 +4,19 @@ const jwt = require('jsonwebtoken');
 const passport = require("passport");
 const User = require('../models/User')
 /* POST login. */
+const verifyToken = async (req, res) => {
+  const { token } = req.body
+  jwt.verify(token, process.env.JWT_SECRET, (err, result) => {
+    if (result) {
+      return res.json({ auth: true })
+    }
+    else {
+      return res.json({ auth: false, err: err })
+    }
+  })
+}
+router.post('/verify', verifyToken)
+
 router.post('/login', function (req, res, next) {
 
 

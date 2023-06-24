@@ -9,6 +9,7 @@ const upload = Multer({
 
 
 
+
 const getAllPosts = async function (req, res) {
   const posts = await Post.find({}).select('-comments');
   res.json({ posts, nBits: posts.length }).status(200)
@@ -63,12 +64,12 @@ const deletePost = async function (req, res) {
   }
   else {
 
-    res.json({ post }).status(200)
+    res.json({ sucess: true }).status(200)
   }
 }
 const updatePost = async function (req, res) {
   const postid = req.params.postid
-  const userInput = req.body.post
+  const userInput = req.body
   const post = await Post.findByIdAndUpdate({ _id: postid }, userInput, { new: true })
   if (!post) {
     res.status(404).send("post not found")
